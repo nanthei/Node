@@ -12,10 +12,6 @@
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-      rel="stylesheet"
-    />
 
     <title>Hello, world!</title>
   </head>
@@ -23,18 +19,32 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <div class="card mt-5">
-            <div class="card-header">Oro temperatūros prognozė</div>
-            <div class="card-body">
-              <form method="GET" action="prognoze">
-                <div class="mb-3">
-                  <label class="form-label">Įrašykite miestą: </label>
-                  {{places}}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mt-5">
+                <div class="card-header">Oro temperatūros prognozė</div>
+                <div class="card-body">
+                  <form method="GET" action="prognoze">
+                    <div class="mb-3">
+                      <label class="form-label">Įrašykite miestą: </label>
+                      {{places}}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Rodyti orų prognozę
+                    </button>
+                  </form>
                 </div>
-                <button type="submit" class="btn btn-primary">
-                  Rodyti orų prognozę
-                </button>
-              </form>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card mt-5">
+                <div class="card-header">Grafikas</div>
+                <div class="card-body">
+                  <div>
+                    <canvas id="tempChart"></canvas>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -65,15 +75,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->
     <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+      integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-      $(document).ready(function () {
-        $(".select2").select2();
-      });
+      const duomenys = {
+        datasets: [
+          {
+            label: "Temperatura",
+            data: TemperaturuDuomenys,
+            tension: 0.4,
+            backgroundColor: "#0000ff",
+          },
+        ],
+      };
+      const config = {
+        type: "bar",
+        data: duomenys,
+        options: {},
+      };
+
+      var grafikas = new Chart(document.getElementById("tempChart"), config);
     </script>
   </body>
 </html>

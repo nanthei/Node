@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
   let getData = url.split("?");
   if (getData[0] === "/prognoze") {
     let place = getData[1].split("=")[1];
-    
+
     places((places) => {
       forecast(place, (temp, place) => {
         res.setHeader("Content-Type", "text/html");
@@ -55,6 +55,20 @@ const server = http.createServer((req, res) => {
         stream = stream.replace("{{places}}", generatePlacesSelect(places));
         stream = stream.replace("{{place}}", place);
         stream = stream.replace("{{temperature}}", s);
+
+        const chartData = [];
+        temp.forEach((d) => {
+          chartData.push({
+            x: d.date.slice(5, 16),
+            y: d.temperature,
+          });
+        });
+
+        stream = stream.replace(
+          "TemperaturuDuomenys",
+          JSON.stringify(chartData)
+        );
+
         res.write(stream);
         res.end();
       });
