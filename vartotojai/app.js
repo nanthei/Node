@@ -1,25 +1,15 @@
 const express = require('express');
+const path = require('path');
+const pageRouter = require('./routes/page');
+const systemRouter = require('./routes/system');
+const userRouter = require('./routes/user');
 
 const app=express();
 
 app.use(express.urlencoded({extended:false}));
-
-app.use((req,res,next)=>{
-    console.log('VISIT');
-    next();
-    });
-
-app.get('/users',(req,res,next)=>{
-res.send('<form action="add_user" method="POST"><input type="text" name="vardas"><button type="submit">SEND</button></form>');
-});
-
-app.post('/add_user',(req,res,next)=>{
-    console.log(req.body);
-    res.send('ADDED: ' + req.body.vardas);
-    });
-
-app.use((req,res,next)=>{
-    res.send("text with h1 tagu");
-    });
+app.use(express.static(path.join(__dirname,'public')));
+app.use(pageRouter);
+app.use(systemRouter);
+app.use('/user',userRouter);
 
 app.listen(3000);
