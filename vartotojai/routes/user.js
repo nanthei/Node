@@ -1,24 +1,19 @@
 const express = require("express");
-const path = require('path');
+// const path = require("path");
 const router = express.Router();
 
 router.get("/add", (req, res, next) => {
-    res.redirect('/user')
-  });
-  
-  router.get("/", (req, res, next) => {
-    res.sendFile(path.join(__dirname,'..','view','user.html'));
-  });
+  res.redirect("/user");
+});
 
-// router.get("/", (req, res, next) => {
-//   res.send(
-//     '<form action="add_user" method="POST"><input type="text" name="vardas"><button type="submit">SEND</button></form>'
-//   );
-// });
+router.get("/", (req, res, next) => {
+  res.render("user");
+  // res.sendFile(path.join(__dirname,'..','views','user.html'));
+});
 
 router.post("/add", (req, res, next) => {
-  console.log(req.body);
-  res.send("ADDED: " + req.body.vardas);
+  res.render("result", { vardas: req.body.vardas });
+  // res.send("ADDED: " + req.body.vardas);
 });
 
 module.exports = router;
