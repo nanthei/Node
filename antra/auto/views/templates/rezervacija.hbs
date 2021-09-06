@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>head}}
+<body id="page-top">
+    {{>nav}}
+    <section class="page-section ps-5 pe-5">
+        <div class="container pt-5">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Rezervacija</h2>
+        </div>
+        <div class="divider-cusstom">
+            <div class="divider-custom-line"></div>
+             <div class="divider-custom-line"></i></div>
+              <div class="divider-custom-line"></div>
+        </div>
+        <div class="row justify-content-center pt-xxl-5">
+            {{!--  --}}
+         {{!-- <div class="col-6">
+             {{#each rez}}
+            <div class="card mb-4">
+                <div class="card-body">
+                     <h5 class="card-title">{{name}}</h5>
+                     <p class="card-text">{{text}}</p>
+                 </div>
+            </div>
+            {{~/each}}
+</div> --}}
+{{!--  --}}
+<hr> 
+<form action="/rezervacija" method="POST">
+                            <!-- mark input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="marke" id="marke" type="text" placeholder="Enter your marke..." data-sb-validations="required" />
+                                <label for="marke">marke</label>
+                                {{!-- <div class="invalid-feedback" data-sb-feedback="mark:required">A mark is required.</div> --}}
+                            </div>
+                                                        <!-- model input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="model" id="model" type="text" placeholder="Enter your model..." data-sb-validations="required" />
+                                <label for="model">model</label>
+                                {{!-- <div class="invalid-feedback" data-sb-feedback="model:required">A model is required.</div> --}}
+                            </div>
+                                                        <!-- year input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="year" id="year" type="text" placeholder="Enter your year..." data-sb-validations="required" />
+                                <label for="year">year</label>
+                                {{!-- <div class="invalid-feedback" data-sb-feedback="year:required">A year is required.</div> --}}
+                            </div>
+                                                        <!-- text input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="text" id="text" type="text" placeholder="Enter your text here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                <label for="text">text</label>
+                                {{!-- <div class="invalid-feedback" data-sb-feedback="text:required">A text is required.</div> --}}
+                            </div>
+                                                        <!-- optional input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="optional" id="optional" type="text" placeholder="Enter your optional..." />
+                                <label for="optional">optional</label>
+                                  {{!-- <div class="invalid-feedback" data-sb-feedback="optional:required">A optional is required.</div> --}}
+                            </div>
+                              <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Send</button>
+                            </form>
+    </section>
+    {{>footer}}
+</body>
+</html>
