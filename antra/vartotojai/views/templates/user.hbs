@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ivedimo forma</title>
+</head>
+<body>
+    {{>menu}}
+    <h1>ivesti duom</h1>
+    <form action="/user/add" method="POST">
+    <input type="text" name="vardas">
+
+    <button type="submit">SEND</button>
+    </form>
+    <img src="user.png" alt="">
+</body>
+</html>
